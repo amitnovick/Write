@@ -4,5 +4,6 @@
 #  esp. when debugging
 # Use relative paths instead of absolute paths for CI/CD compatibility
 # From jni directory: jni -> main -> src -> app -> android -> syncscribble -> Write (root)
-include $(LOCAL_PATH)/../../../../../../SDL/Android.mk
-include $(LOCAL_PATH)/../../../../../../syncscribble/Makefile
+MY_LOCAL_PATH := $(call my-dir)
+include $(MY_LOCAL_PATH)/../../../../../../SDL/Android.mk
+include $(MY_LOCAL_PATH)/../../../../../../syncscribble/Makefile
