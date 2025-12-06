@@ -34,7 +34,7 @@ jobs:
     - name: Checkout SDL write-android branch
       run: |
         cd SDL
-        git checkout write-android
+        git checkout -b write-android origin/write-android
 
     - name: Set up JDK 17
       uses: actions/setup-java@v3
