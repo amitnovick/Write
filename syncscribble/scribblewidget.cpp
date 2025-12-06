@@ -149,6 +149,11 @@ ScribbleWidget::ScribbleWidget(ScribbleView* sv) : Widget(new SvgCustomNode), sc
       return true;  // SvgGui ignores this currently
     }
     else {
+      // Don't allow tool usage if a UI widget (toolbar button, etc.) has claimed the touch event
+      // This fixes Android bug where tools are used despite touching toolbar buttons
+      if(gui->pressedWidget && gui->pressedWidget != this)
+        return false;  // Another widget has claimed this touch event
+
       auto prev = scribbleView->scribbleInput->scribbling;
       if(scribbleView->scribbleInput->sdlEvent(gui, event)) {
         // SDL_FINGERDOWN case added to make it easier to recover from messed up state
